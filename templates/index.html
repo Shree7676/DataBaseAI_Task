@@ -16,6 +16,7 @@
         <div class="box" id="chat-area">
             <h3>Chat Area</h3>
             <div id="chatbox">
+                <br><br>
                 {% if user_messages %}
                     {% for message, sender in user_messages %}
                         <div class="{{ sender }}-message"
@@ -30,6 +31,7 @@
         <div class="box" id="retrieved-data">
             <h3>Retrieved Data</h3>
             <div id="data-box">
+                <br><br>
                 {{retrived_data }}
             </div>
         </div>
