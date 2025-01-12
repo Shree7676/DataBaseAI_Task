@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot UI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+<div class="container">
+    <!-- Main content section with 3 boxes -->
+    <div class="main-content">
+        <!-- Left Box for Chat Area -->
+        <div class="box" id="chat-area">
+            <h3>Chat Area</h3>
+            <div id="chatbox">
+                {% if user_messages %}
+                    {% for message, sender in user_messages %}
+                        <div class="{{ sender }}-message"
+                             style="{% if sender == 'bot' %}background-color: lightblue;{% else %}font-weight: bold;{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <!-- Middle Box for Retrieved Data -->
+        <div class="box" id="retrieved-data">
+            <h3>Retrieved Data</h3>
+            <div id="data-box">
+                {{retrived_data }}
+            </div>
+        </div>
+        <!-- Right Box for Validation Results -->
+        <div class="box" id="validation-results">
+            <h3>Validation Results</h3>
+            <div id="validation-box">
+                <ul>
+                    {% for Statement, Accuracy in validation_output %}
+                        <br><br>
+                        <li>
+                            <strong>Statement:</strong> {{ Statement }}
+                        </li>
+                        <li>
+                            <strong>Hallucination:</strong> {{100 - Accuracy }} %
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Input Box (Fixed at the bottom) -->
+    <form method="POST" class="chat-box" action="/chat">
+        <div id="user-message-area"></div>
+        <div class="input-box">
+            <input type="text" name="question" id="user-input" placeholder="Type a message..." required />
+            <button type="submit">Send</button>
+        </div>
+    </form>
+
+</body>
+</html>

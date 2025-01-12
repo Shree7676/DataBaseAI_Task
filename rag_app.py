@@ -44,11 +44,11 @@ Answer:
     statements = simplify_statements(response)
     pairs = [(retrived_data, statement) for statement in statements]
     predictions = get_predictions(pairs)
-    for pair, pred in zip(pairs, predictions):
-        print(f"Statement: {pair[1]}")
-        print(f"Accuracy: {pred}")
-    return response
 
-question = "whats the review of Black Eye Patch with Tie Band"
-response = ask_question_with_context(question)
-print("Model Response:", response)
+    validation = zip(pairs, predictions)
+    return response , retrived_data['documents'], validation
+
+if __name__=="__main__":
+    question = "whats the review of Black Eye Patch with Tie Band"
+    response, retrived_data, validation = ask_question_with_context(question)
+    print("Model Response:", response)
