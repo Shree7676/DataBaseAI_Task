@@ -4,6 +4,8 @@ import chromadb
 import os
 from dotenv import load_dotenv
 
+from validating_ragapp import simplify_statements, get_predictions
+
 load_dotenv()
 
 model_id = "mistralai/Mistral-7B-Instruct-v0.2"
@@ -23,12 +25,12 @@ def query_vector_db(query, top_k=3):
 
 
 def ask_question_with_context(question, top_k=3):
-    results = query_vector_db(question, top_k=top_k)
+    retrived_data = query_vector_db(question, top_k=top_k)
     prompt = f"""
 You are an assistant. Use the following context to answer the question accurately and concisely.
 
 Context:
-{results}
+{retrived_data}
 
 Question: {question}
 Answer:
@@ -39,8 +41,14 @@ Answer:
         temperature=0.1,
         repetition_penalty=1.2
     )
+    statements = simplify_statements(response)
+    pairs = [(retrived_data, statement) for statement in statements]
+    predictions = get_predictions(pairs)
+    for pair, pred in zip(pairs, predictions):
+        print(f"Statement: {pair[1]}")
+        print(f"Accuracy: {pred}")
     return response
 
-question = "which is the best product"
+question = "whats the review of Black Eye Patch with Tie Band"
 response = ask_question_with_context(question)
 print("Model Response:", response)
