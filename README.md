@@ -98,14 +98,14 @@ This project includes the following components:
 
 # Data Exploration (/Data Directory)
 
-The `Data` folder contains shows How I collected and processed the sample data for the RAG app.
+The `Data` folder includes the file which helped me to get a sample data below are the brief summary of what each file is. As it was a exploration phase of data so I thought of not adding any comments due to time constraints, However other files have a detailed comments.
 
 - **Amazon Reviews Dataset (2023)**:  
   I used the large-scale Amazon Reviews dataset provided by McAuley Lab ([Dataset Source](https://amazon-reviews-2023.github.io/main.html)).  
-  This dataset contains over 571.54M reviews and is about 8GB in size.
+  This dataset contains over 571.54M reviews and is about 8GB in size so I just took a sample of data from it.
 
 - **`previous.py`**:  
-  This file contains a history of commands and results from the Ipython interactive terminal. Here, I explored the data and extracted a sample dataset.
+  This file contains a history of commands and results from the Ipython interactive terminal. Here, I explored the data and extracted a sample small size dataset.
 
 - **`DataBaseAI_task.ipynb`**:  
   This notebook contains preprocessing code. You can view it [here](https://gist.github.com/Shree7676/ec78c49e18445a063d735a61dffb91ec). Since the focus was on reviews and topics, other data like ratings were omitted due to time constraints.
