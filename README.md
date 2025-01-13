@@ -18,15 +18,15 @@ docker run -p 5000:5000 ghcr.io/shree7676/databaseai-task:latest
    ```bash
    git clone https://github.com/Shree7676/DataBaseAI_Task.git
    ```
-2. Set up a virtual environment:
+2. Set up a virtual environment: (Optional/Recomended)
    ```bash
    python3 -m venv ai_virtual_env
    source ai_virtual_env/bin/activate
    ```
 3. Install the dependencies:
    ```bash
-   pip install -r requirements.txt
    cd DataBaseAI_Task
+   pip install -r requirements.txt
    ```
 4. Log in to Hugging Face:
    - [Login Page](https://huggingface.co/login)
