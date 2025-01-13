@@ -1,14 +1,18 @@
 import torch
 from transformers import AutoModelForSequenceClassification
-import nltk
-from nltk.tokenize import sent_tokenize
+import spacy
 
 model = AutoModelForSequenceClassification.from_pretrained(
-    "vectara/hallucination_evaluation_model",trust_remote_code=True)
+    "vectara/hallucination_evaluation_model", trust_remote_code=True
+)
 
+# Initialize spaCy blank model and add the sentencizer
+nlp = spacy.blank("en")
+nlp.add_pipe("sentencizer")
 
 def simplify_statements(answer_text):
-    sentences = sent_tokenize(answer_text)
+    doc = nlp(answer_text)
+    sentences = [sent.text for sent in doc.sents]
     return sentences
 
 def get_predictions(pairs):
