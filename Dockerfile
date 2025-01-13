@@ -10,7 +10,7 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all files from the current directory to the container's /app directory
+# Copy all files from the current directory including the .env
 COPY . .
 
 # Expose the port your Flask app runs on

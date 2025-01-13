@@ -2,11 +2,12 @@ import torch
 from transformers import AutoModelForSequenceClassification
 import spacy
 
+# Fine tuned llm model which evaluates the hallucination in a response.
 model = AutoModelForSequenceClassification.from_pretrained(
     "vectara/hallucination_evaluation_model", trust_remote_code=True
 )
 
-# Initialize spaCy blank model and add the sentencizer
+# Spcay is required to break the response into simple statements
 nlp = spacy.blank("en")
 nlp.add_pipe("sentencizer")
 
@@ -15,6 +16,8 @@ def simplify_statements(answer_text):
     sentences = [sent.text for sent in doc.sents]
     return sentences
 
+# pairs is a list of tuple, 
+# In each tuple the retrived data and the sentence is present.
 def get_predictions(pairs):
     outputs = model.predict(pairs)
     predictions = outputs
