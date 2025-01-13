@@ -64,7 +64,10 @@ This project includes the following components:
 - **Logical inconsistencies** may occur between the feedback and the generated output.  
 
 ### Countermeasures that are Implemented:
-1. **Using Fine-Tuned LLM**:  
+
+FINE TUNINNG AN LLM : To fine tune such llms we need to work on data such that it contradicts to the original knowledge for example we have to have a retrieved data which states The Capital city of Germany is Paris in actual its not True. However when model provides the response for the que if it ans Berlin we get to know that the model is using its previous learned data and not focousing on the retrieved data so we can give Negative rewards and fine tune it again untill it relies only on retrieved data.
+
+1. **Using Pre-Existing Fine-Tuned LLM**:  
    An LLM fine-tuned to check hallucination helps in identifying responses that are inconsistent with the retrieved data. 
    In the image below you can see that though the second statement can be true in real world we still classify it as hallucination because the content was not present in the retrieved data and it was using the knowledge that it had pre learned.
    ![image](https://github.com/user-attachments/assets/9a606042-b0bb-4380-bc6c-cc0cebb7445c)
